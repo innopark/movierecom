@@ -141,3 +141,57 @@ button:hover {
     width: 90%;
   }
 }
+
+/* 검색창 스타일 */
+.search-bar {
+  width: 25%;
+  padding: 10px;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  margin: 20px 0;
+  font-size: 1rem;
+}
+
+/* 부모 요소인 .container에 텍스트 가운데 정렬 */
+.container {
+  text-align: center; /* 컨테이너 내의 모든 텍스트와 요소를 가운데 정렬 */
+}
+
+/* 검색된 영화 스타일 */
+#searched-movie {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* 영화 카드 스타일 */
+.movie-card {
+  background-color: #3e3e3e;
+  padding: 15px;
+  border-radius: 15px;
+  width: 200px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: #fff;
+  transition: transform 0.3s ease;
+}
+
+.movie-card:hover {
+  transform: scale(1.05);  /* 영화 패널을 살짝 확대 */
+}
+
+/* 검색된 영화는 크게 표시 */
+#searched-movie .movie-card {
+  width: 300px; /* 검색된 영화는 더 크게 */
+}
+
+/* 영화 포스터 */
+.movie-poster {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* 별점 스타일 */
+.stars {
+  color: gold;
+  font-size: 1.2rem;
+}
