@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movie Recommendations</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Today's Movie Recommendations <span class="small">@innopark</span></h1>
+
+
+    <!-- 인기 영화 섹션 -->
+    <h2>인기 영화</h2>
+    <div class="movie-list" id="popular-movie-list"></div>
+
+    <!-- 카테고리 버튼 섹션 -->
+    <h2>카테고리별 영화</h2>
+    <div class="categories">
+      <button onclick="handleCategoryClick('Action')">Action</button>
+      <button onclick="handleCategoryClick('Comedy')">Comedy</button>
+      <button onclick="handleCategoryClick('Drama')">Drama</button>
+      <button onclick="handleCategoryClick('Horror')">Horror</button>
+    </div>
+
+    <!-- 선택된 카테고리에 해당하는 영화 리스트 -->
+    <div class="movie-list" id="category-movie-list"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
