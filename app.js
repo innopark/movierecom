@@ -100,3 +100,65 @@ document.addEventListener("DOMContentLoaded", () => {
     fetchMoviesByCategory('Action'); // 페이지 로드 시 기본으로 'Action' 카테고리 영화 표시
   });
   
+  // 검색된 영화와 유사한 영화를 추천하는 함수
+const searchMovie = async () => {
+  const query = document.getElementById("movie-search").value; // 검색어 가져오기
+  if (!query) return alert("영화 이름을 입력해주세요.");
+
+  const response = await fetch(
+    `https://www.omdbapi.com/?s=${query}&apikey=b01668ec`
+  );
+  const data = await response.json();
+
+  if (data.Response === "True") {
+    // 첫 번째 영화의 IMDb ID로 유사한 영화 가져오기
+    const movieId = data.Search[0].imdbID;
+    fetchSimilarMovies(movieId); // 유사한 영화 가져오기
+  } else {
+    alert("영화를 찾을 수 없습니다.");
+  }
+};
+
+// 유사 영화 데이터를 가져오는 함수
+const fetchSimilarMovies = async (movieId) => {
+  const response = await fetch(
+    `https://www.omdbapi.com/?i=${movieId}&apikey=b01668ec&plot=full`
+  );
+  const data = await response.json();
+
+  if (data) {
+    const genre = data.Genre.split(",")[0]; // 첫 번째 장르로 유사 영화 검색
+    const responseSimilar = await fetch(
+      `https://www.omdbapi.com/?s=${genre}&apikey=b01668ec`
+    );
+    const similarMovies = await responseSimilar.json();
+
+    if (similarMovies.Response === "True") {
+      displayMovies(similarMovies.Search, popularMovieList); // 유사한 영화들을 화면에 표시
+    } else {
+      alert("유사 영화를 찾을 수 없습니다.");
+    }
+  }
+};
+
+// 검색된 영화를 검색창 아래에 표시하는 함수
+const displaySearchedMovie = async (movie) => {
+  const searchedMovieContainer = document.getElementById("searched-movie");
+
+  // 기존 콘텐츠를 덮어쓰지 않고 새로운 콘텐츠를 추가하도록 수정
+  const movieCard = `
+    <div class="movie-card">
+      <img src="${movie.Poster}" alt="${movie.Title}" class="movie-poster"/>
+      <h3>${movie.Title}</h3>
+      <p>출시연도: ${movie.Year}</p>
+      <p>평점: ${movie.imdbRating ? movie.imdbRating : 'N/A'} (IMDb)</p>
+      <p>${movie.Plot ? movie.Plot : '줄거리를 찾을 수 없습니다.'}</p>
+    </div>
+  `;
+
+  // 기존 콘텐츠 유지하며 새 영화 카드 추가
+  searchedMovieContainer.innerHTML += movieCard;
+
+  // 추천 영화 섹션 제목 변경
+  document.getElementById("movie-section-title").innerText = "추천 영화";
+};
