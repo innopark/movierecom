@@ -10,10 +10,24 @@
   <div class="container">
     <h1>Today's Movie Recommendations <span class="small">@innopark</span></h1>
 
+          <!-- 대제목 밑에 검색창 추가 -->
+      <input
+      type="text"
+      id="movie-search"
+      placeholder="좋아하는 영화를 검색하세요..."
+      class="search-bar"
+      />
+      <button onclick="searchMovie()">검색</button>
 
-    <!-- 인기 영화 섹션 -->
-    <h2>인기 영화</h2>
-    <div class="movie-list" id="popular-movie-list"></div>
+
+      <!-- 검색된 영화 표시 -->
+      <div id="searched-movie"></div>
+
+      <!-- 인기 영화 섹션, 검색 시 제목이 추천 영화로 변경됨 -->
+      <h2 id="movie-section-title">인기 영화</h2>
+      <div class="movie-list" id="popular-movie-list"></div>
+      
+
 
     <!-- 카테고리 버튼 섹션 -->
     <h2>카테고리별 영화</h2>
