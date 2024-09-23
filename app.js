@@ -5,7 +5,7 @@ const keywords = ["Avengers", "Batman", "Star Wars", "Harry Potter", "Matrix"];
 
 // 특정 영화의 상세 정보를 불러오는 함수
 const fetchMovieDetails = (movieId) => {
-  return fetch(`http://www.omdbapi.com/?i=${movieId}&apikey=b01668ec&plot=full`)
+  return fetch(`https://www.omdbapi.com/?i=${movieId}&apikey=b01668ec&plot=full`)
     .then((response) => response.json())
     .then((data) => data);
 };
@@ -14,7 +14,7 @@ const fetchMovieDetails = (movieId) => {
 const fetchPopularMovies = async () => {
   const moviesFromKeywords = await Promise.all(
     keywords.map((keyword) =>
-      fetch(`http://www.omdbapi.com/?s=${keyword}&apikey=b01668ec`)
+      fetch(`https://www.omdbapi.com/?s=${keyword}&apikey=b01668ec`)
         .then((response) => response.json())
         .then(async (data) => {
           if (data.Response === "True") {
@@ -33,7 +33,7 @@ const fetchPopularMovies = async () => {
 
 // 선택된 카테고리의 영화를 가져오는 함수
 const fetchMoviesByCategory = async (category) => {
-  const response = await fetch(`http://www.omdbapi.com/?s=${category}&apikey=b01668ec`);
+  const response = await fetch(`https://www.omdbapi.com/?s=${category}&apikey=b01668ec`);
   const data = await response.json();
   if (data.Response === "True") {
     const moviesWithDetails = await Promise.all(
