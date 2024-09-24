@@ -73,7 +73,6 @@ h2 {
 }
 
 
-
 /* 줄거리 스타일 (이전 폰트 유지) */
 .movie-details p {
   font-size: 0.9rem;
@@ -163,31 +162,35 @@ button:hover {
   text-align: center;
 }
 
-/* 영화 카드 스타일 */
-.movie-card {
+/* 검색된 영화 카드 스타일 */
+.movie-card-large {
+  width: 350px; /* 박스 크기를 크게 설정 */
+  margin: 20px auto;
+  padding: 20px;
   background-color: #3e3e3e;
-  padding: 15px;
   border-radius: 15px;
-  width: 200px;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  color: #fff;
-  transition: transform 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  text-align: center; /* 카드 내 모든 텍스트를 가운데 정렬 */
 }
 
-.movie-card:hover {
-  transform: scale(1.05);  /* 영화 패널을 살짝 확대 */
-}
 
-/* 검색된 영화는 크게 표시 */
-#searched-movie .movie-card {
-  width: 300px; /* 검색된 영화는 더 크게 */
-}
-
-/* 영화 포스터 */
-.movie-poster {
-  width: 100%;
+/* 검색된 영화 포스터 */
+.movie-poster-large {
+  width: 100%; 
   border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+/* 검색된 영화의 상세 정보 */
+.movie-details-large h3 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.movie-details-large p {
+  font-size: 1.2rem;
+  color: #ccc;
 }
 
 /* 별점 스타일 */
