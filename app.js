@@ -7,7 +7,10 @@ const keywords = ["Avengers", "Batman", "Star Wars", "Harry Potter", "Matrix"];
 const fetchMovieDetails = (movieId) => {
   return fetch(`https://www.omdbapi.com/?i=${movieId}&apikey=b01668ec&plot=full`)
     .then((response) => response.json())
-    .then((data) => data);
+    .then((data) => {
+      console.log("Fetched Movie Details:", data); // API 응답 데이터 확인
+      return data;
+    });
 };
 
 // 여러 키워드에서 인기 영화 데이터를 가져오는 함수
@@ -49,6 +52,7 @@ const fetchMoviesByCategory = async (category) => {
 const displayMovies = (movies, targetElement) => {
   targetElement.innerHTML = ""; // 기존 내용 지우기
   movies.forEach((movie) => {
+    console.log("Displaying movie:", movie); // 영화 데이터 확인
     const movieCard = document.createElement("div");
     movieCard.classList.add("movie-card");
 
@@ -80,9 +84,12 @@ const displayMovies = (movies, targetElement) => {
 
 // 스토리 줄거리를 줄이는 함수
 const truncatePlot = (plot) => {
-  if (!plot || plot === "N/A") return "줄거리를 찾을 수 없습니다.";
-  return plot.length > 120 ? plot.substring(0, 120) + "..." : plot;
+  if (!plot || plot === "N/A") {
+    return "An epic story that captures the imagination and emotions of the audience."; // 모든 영화에 대해 기본 설명 제공
+  }
+  return plot.length > 100 ? plot.substring(0, 100) + "..." : plot;
 };
+
 
 // 카테고리 버튼 클릭 시 호출되는 함수
 const handleCategoryClick = (category) => {
@@ -121,8 +128,8 @@ const displaySearchedMovie = (movie) => {
   const searchedMovieContainer = document.getElementById("searched-movie");
   searchedMovieContainer.innerHTML = ""; // 기존 내용 초기화
 
-  const movieCard = `
-    <div class="movie-card-large" style="text-align: center;">
+  const movieCard = 
+    `<div class="movie-card-large" style="text-align: center;">
       <img src="${movie.Poster}" alt="${movie.Title}" class="movie-poster-large"/>
       <div class="movie-details-large">
         <h3>${movie.Title}</h3>
@@ -130,8 +137,7 @@ const displaySearchedMovie = (movie) => {
         <p>평점: ${movie.imdbRating ? movie.imdbRating : 'N/A'} (IMDb)</p>
         <p>${truncatePlot(movie.Plot)}</p>
       </div>
-    </div>
-  `;
+    </div>`;
 
   searchedMovieContainer.innerHTML = movieCard;
 };
